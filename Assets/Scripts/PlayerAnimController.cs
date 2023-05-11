@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimController : MonoBehaviour
 {
+
     Animator animator;
     private void Awake()
     {
@@ -12,12 +13,20 @@ public class PlayerAnimController : MonoBehaviour
 
     private void Update()
     {
-        animator.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
-        animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
-        if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
+        if(PlayerController.canMoving)
         {
-            animator.SetFloat("Stand_H", Input.GetAxisRaw("Horizontal"));
-            animator.SetFloat("Stand_V", Input.GetAxisRaw("Vertical"));
+            animator.SetFloat("Vertical", Input.GetAxisRaw("Vertical"));
+            animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
+            if (Input.GetAxisRaw("Horizontal") == 1 || Input.GetAxisRaw("Horizontal") == -1 || Input.GetAxisRaw("Vertical") == 1 || Input.GetAxisRaw("Vertical") == -1)
+            {
+                animator.SetFloat("Stand_H", Input.GetAxisRaw("Horizontal"));
+                animator.SetFloat("Stand_V", Input.GetAxisRaw("Vertical"));
+            }
+
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                animator.SetTrigger("Play");
+            }
         }
     }
 }

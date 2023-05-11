@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 1f;
-    // Start is called before the first frame update
+    public static bool canMoving = true;
+        // Start is called before the first frame update
     void Start()
     {
         
@@ -18,12 +19,18 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"), 0)*moveSpeed);
+        if (canMoving)
+        {
+            transform.Translate(new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0) * moveSpeed);
+        }
     }
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Mouse1))
+        {
+
+        }
     }
 }
 
