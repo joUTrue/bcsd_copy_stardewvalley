@@ -11,13 +11,9 @@ public class CursorController : MonoBehaviour
     public ScriptManager scriptManager;
     RaycastHit2D hit;
     bool isActive = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+
+
     void Update()
     {
         MouseClickDown();
@@ -53,24 +49,12 @@ public class CursorController : MonoBehaviour
 
     void BoolOnonSelected()
     {
-        //if (hit.collider != null)
-        //{
-        //    //Vector2 targetPosition = GameObject.Find($"{hit.collider.name}").transform.position;
-        //    targetPosition = hit.transform.position;
-
-        //    InstantiateSelectRing();
-        //}
-        //else
-        //{
-        //    onSelected = false;
-        //    Destroy(GameObject.FindGameObjectWithTag("SelectedRing"));
-        //    nameBox.SetActive(false);
-        //
         if (scriptManager.isVisible)
         {
             scriptManager.CloseScript();
         }
         else if (hit.collider != null)
+
         {
             if (canClickList.Contains(hit.collider.gameObject))
             {
@@ -78,18 +62,4 @@ public class CursorController : MonoBehaviour
             }
         } 
     }
-
-    //void InstantiateSelectRing()
-    //{
-    //    if (!onSelected && !GameObject.FindGameObjectWithTag("SelectedRing"))
-    //    {
-    //        onSelected = true;
-    //        nameBox.SetActive(true);
-    //        Instantiate(seletedRingPrefabs, targetPosition, transform.rotation);
-    //    }
-    //    else if (onSelected && GameObject.FindGameObjectWithTag("SelectedRing"))
-    //    {
-    //        GameObject.FindGameObjectWithTag("SelectedRing").transform.position = targetPosition;
-    //    }
-    //}
 }

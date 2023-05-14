@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,9 +18,13 @@ public class ScriptManager : MonoBehaviour
     public GameObject textBoard, Portrait, PortraitOutline;
     public bool isVisible;
 
+    private NPCControl npc;
+    private bool isTalking = false;
+    private int curDialogue = 0, curContext = 0;
+
     string eventName;
     TalkData[] talkDatas;
-    private static Dictionary<string, TalkData[]> DialogueDictionary = new Dictionary<string, TalkData[]>();
+    [SerializeField] private static Dictionary<string, TalkData[]> DialogueDictionary = new Dictionary<string, TalkData[]>();
     [SerializeField] private TextAsset csvFile = null;
     string csvText;
     string[] rows;
@@ -37,21 +42,71 @@ public class ScriptManager : MonoBehaviour
     public void Search(GameObject targetObj)
     {
         PlayerController.canMoving = false;
-        script.text = "이것은" + targetObj.name + "이다";
-        isVisible = true;
-        textBoard.SetActive(true);
-        PortraitOutline.SetActive(true);
+        if(isTalking)
+        {
+            if(!PrintScript()) 
+            {
+                isTalking = false;
+                CloseScript();
+            }
+        }
+        else
+        {
+            if (targetObj.tag == "NPC")
+            {
+                npc = targetObj.GetComponent<NPCControl>();
+                eventName = npc.GetName() + " " + npc.talkingNPC();
+                Portrait.GetComponent<Image>().sprite = npc.getPortrait();
+                npcName.text = npc.GetName();
+                curDialogue = 0;
+                curContext = 0;
+                isTalking = true;
+                PrintScript();
+            }
+            else
+            {
+                script.text = "이것은" + targetObj.name + "이다";
+            }
+
+            isVisible = true;
+            textBoard.SetActive(true);
+            PortraitOutline.SetActive(true);
+        }
     }
 
     public void CloseScript()
     {
-
-        isVisible = false;
-        PortraitOutline?.SetActive(false);
-        textBoard.SetActive(false);
-        PlayerController.canMoving = true;
+        if (isTalking)
+        {
+            Search(null);
+        }
+        else
+        {
+            isVisible = false;
+            PortraitOutline?.SetActive(false);
+            textBoard.SetActive(false);
+            PlayerController.canMoving = true;
+        }
     }
-
+    private bool PrintScript()
+    {
+        //if (curDialogue < GetDialogue(npc.GetName() + " " + npc.talkingNPC()).Length)
+        //{
+            if(curContext < GetDialogue(eventName)[curDialogue].contexts.Length)
+            {
+                script.text = GetDialogue(eventName)[curDialogue].contexts[curContext];
+                curContext++;
+            }
+            else
+            {
+                //curDialogue++;
+                //curContext = 0;
+                return false;
+            }
+       //}   
+        //else { return false; }
+        return true;
+    }
     public void Parsing()
     {
         csvText = csvFile.text.Substring(0, csvFile.text.Length - 1);
