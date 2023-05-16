@@ -9,25 +9,25 @@ public class NPC_Clint : NPCControl
 
     public Sprite Portrait;
 
-    NPC_Clint ( ):base(NPC.Clint,Item.Coliflower, Item.Flower, null)
+    NPC_Clint() : base(NPC.Clint, Item.Coliflower, Item.Flower)
     {
-
+        portrait = Portrait;
     }
     public override string talkingNPC()
     {
         base.talkingNPC();
         Debug.Log(firstMeet + " " + firstMeetDay);
-        if (firstMeet )
+        if (firstMeet)
         {
             firstMeet = false;
             return "첫조우";
         }
-        else if (firstMeetDay )
+        else if (firstMeetDay)
         {
             firstMeetDay = false;
             return "아침인사";
         }
-        Debug.Log(firstMeet +" "+firstMeetDay);
+        Debug.Log(firstMeet + " " + firstMeetDay);
         return "대화1";
     }
 }

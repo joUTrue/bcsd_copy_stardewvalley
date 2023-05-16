@@ -22,15 +22,15 @@ public class NPCControl : MonoBehaviour
     private int npcLike = 0;
     private Item likeThing;
     private Item hateThing;
-    private Sprite portrait;
+    public Sprite portrait;
 
 
-    public NPCControl(NPC npc, Item likeThing, Item hateThing, Sprite portrait)
+    public NPCControl(NPC npc, Item likeThing, Item hateThing)
     {
         this.npc = npc;
         this.likeThing = likeThing;
         this.hateThing = hateThing;
-        this.portrait = portrait;   
+        //this.portrait = portrait;   
     }
     public string GetName()
     {
@@ -41,6 +41,11 @@ public class NPCControl : MonoBehaviour
         return "";
     }
 
+    protected void SetPortrait(Sprite _sprite)
+    {
+        portrait = _sprite;
+        Debug.Log("¼ÂÆ÷Æ®·¹ÀÕ");
+    }
     public Sprite getPortrait()
     {
         return portrait;

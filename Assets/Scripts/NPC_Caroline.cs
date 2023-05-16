@@ -7,11 +7,15 @@ public class NPC_Caroline : NPCControl
     private bool firstMeet = true;
     private bool firstMeetDay = true;
 
-    public Sprite Portrait;
+    public Sprite _Portrait;
 
-    NPC_Caroline() : base(NPC.Caroline, Item.Stone, Item.Wood, null)
+    NPC_Caroline() : base(NPC.Caroline, Item.Stone, Item.Wood)
     {
+    }
 
+    public void Awake()
+    {
+        SetPortrait(_Portrait);
     }
     public override string talkingNPC()
     {

@@ -83,15 +83,13 @@ public class ScriptManager : MonoBehaviour
         else
         {
             isVisible = false;
-            PortraitOutline?.SetActive(false);
+            PortraitOutline.SetActive(false);
             textBoard.SetActive(false);
             PlayerController.canMoving = true;
         }
     }
     private bool PrintScript()
     {
-        //if (curDialogue < GetDialogue(npc.GetName() + " " + npc.talkingNPC()).Length)
-        //{
             if(curContext < GetDialogue(eventName)[curDialogue].contexts.Length)
             {
                 script.text = GetDialogue(eventName)[curDialogue].contexts[curContext];
@@ -99,12 +97,8 @@ public class ScriptManager : MonoBehaviour
             }
             else
             {
-                //curDialogue++;
-                //curContext = 0;
                 return false;
             }
-       //}   
-        //else { return false; }
         return true;
     }
     public void Parsing()
