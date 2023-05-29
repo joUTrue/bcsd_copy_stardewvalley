@@ -3,14 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public enum Item
-{
-    Flower,
-    Stone,
-    Wood,
-    Coliflower
-}
-[System.Serializable]
 public enum NPC
 {
     Clint,
@@ -25,6 +17,11 @@ public class NPCControl : MonoBehaviour
     public Sprite portrait;
 
 
+    public NPCControl(NPC npc)
+    {
+        this.npc = npc;
+        //this.portrait = portrait;   
+    }
     public NPCControl(NPC npc, Item likeThing, Item hateThing)
     {
         this.npc = npc;
@@ -44,7 +41,6 @@ public class NPCControl : MonoBehaviour
     protected void SetPortrait(Sprite _sprite)
     {
         portrait = _sprite;
-        Debug.Log("¼ÂÆ÷Æ®·¹ÀÕ");
     }
     public Sprite getPortrait()
     {

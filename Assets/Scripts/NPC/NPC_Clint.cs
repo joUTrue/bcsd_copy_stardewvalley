@@ -7,16 +7,20 @@ public class NPC_Clint : NPCControl
     private bool firstMeet = true;
     private bool firstMeetDay = true;
 
-    public Sprite Portrait;
+    public Sprite _Portrait;
 
-    NPC_Clint() : base(NPC.Clint, Item.Coliflower, Item.Flower)
+    NPC_Clint() : base(NPC.Clint)
     {
-        portrait = Portrait;
+
+    }
+
+    public void Awake()
+    {
+        SetPortrait(_Portrait);
     }
     public override string talkingNPC()
     {
         base.talkingNPC();
-        Debug.Log(firstMeet + " " + firstMeetDay);
         if (firstMeet)
         {
             firstMeet = false;
@@ -27,7 +31,6 @@ public class NPC_Clint : NPCControl
             firstMeetDay = false;
             return "아침인사";
         }
-        Debug.Log(firstMeet + " " + firstMeetDay);
         return "대화1";
     }
 }

@@ -25,7 +25,7 @@ public class PlayerAnimController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                animator.SetTrigger("Play");
+                //animator.SetTrigger("Play");
             }
         }
     }

@@ -9,7 +9,7 @@ public class NPC_Caroline : NPCControl
 
     public Sprite _Portrait;
 
-    NPC_Caroline() : base(NPC.Caroline, Item.Stone, Item.Wood)
+    NPC_Caroline() : base(NPC.Caroline)
     {
     }
 

@@ -37,8 +37,8 @@ public class CursorController : MonoBehaviour
     }
 
     void MouseClickDown()
-    {
-        if (Input.GetMouseButtonDown(0))
+    { 
+        if (Input.GetMouseButtonDown(1))
         {
             Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             hit = Physics2D.Raycast(worldPoint, Vector2.zero);
