@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ActionController : MonoBehaviour
 {
-    Animator animator;
+    private Animator animator;
+    [SerializeField]private Inventory inventory;
+    [SerializeField]private TilemapManager tilemapManager;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -20,6 +22,7 @@ public class ActionController : MonoBehaviour
         {
             PlayerController.canMoving = false;
             animator.SetTrigger("PlayHoe");
+            tilemapManager.GetTile(gameObject.transform.position);
         }
     }
 }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2697a436655e484d93e204832cc0e81, type: 3}
   m_Name: fish
   m_EditorClassIdentifier: 
-  itemName: 
-  itemImage: {fileID: 0}
-  category: 0
+  itemName: fish
+  itemImage: {fileID: 827286587, guid: f648a6c3c399525479950504134aa6dd, type: 3}
+  category: 1
